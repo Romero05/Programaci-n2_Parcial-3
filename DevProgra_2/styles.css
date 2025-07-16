@@ -1,0 +1,528 @@
+/* Reseteo básico y variables */
+:root {
+    --primary-gradient-start: #7b4397; /* Violeta oscuro */
+    --primary-gradient-end: #dc2430;   /* Rojo vibrante */
+    --accent-blue-start: #6a11cb;    /* Azul violeta para estrella */
+    --accent-blue-end: #2575fc;      /* Azul claro para estrella */
+    --background-color: #f0f2f5;     /* Fondo general */
+    --card-bg-light: #ffffff;       /* Fondo de las cards con info blanca */
+    --text-dark: #333;               /* Color de texto oscuro */
+    --text-light: #ffffff;           /* Color de texto claro */
+    --tag-new: #4CAF50;              /* Verde para "NUEVO" */
+    --tag-offer: #FFC107;            /* Naranja para "OFERTA" */
+    --tag-sold-out: #f44336;         /* Rojo para "AGOTADO" */
+    --star-color: #FFD700;           /* Dorado para estrellas */
+    --button-bg-light: rgba(255, 255, 255, 0.2); /* Fondo de botón semi-transparente */
+    --button-hover-light: rgba(255, 255, 255, 0.3);
+    --button-primary-text: var(--primary-gradient-start); /* Texto de botón principal */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    min-height: 100vh; /* Asegura que el body ocupe al menos toda la altura de la ventana */
+}
+
+/* Contenido principal para empujar el footer hacia abajo */
+main {
+    flex-grow: 1; /* Esto hace que el main crezca y empuje el footer hacia abajo */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Header - APLICANDO EL DEGRADADO DE LA IMAGEN */
+header {
+    width: 100%;
+    background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end)); /* Degradado */
+    text-align: center;
+    padding: 20px 0; /* Padding vertical */
+    margin-bottom: 30px;
+    color: var(--text-light); /* Color del texto blanco */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil para el header */
+}
+
+header h1 {
+    font-size: 2.5em;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: var(--text-light); /* Texto blanco */
+}
+
+header p {
+    font-size: 1.1em;
+    color: rgba(255, 255, 255, 0.8); /* Texto blanco semi-transparente */
+}
+
+/* Section Title */
+.title-section {
+    width: 100%;
+    max-width: 1200px;
+    text-align: left;
+    margin-bottom: 25px;
+    padding-left: 20px;
+    color: var(--text-dark);
+}
+
+.title-section h2 {
+    font-size: 2em;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+/* Product Grid */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    justify-content: center;
+    padding: 0 20px;
+    margin-bottom: 40px; /* Margen antes del footer para que no se pegue */
+}
+
+/* Product Card Base */
+.product-card {
+    background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end));
+    border-radius: 20px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-height: 350px;
+    color: var(--text-light);
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Large Product Card (Producto Estrella Premium) */
+.product-card.large {
+    grid-column: span 1;
+    background: linear-gradient(135deg, var(--accent-blue-start), var(--accent-blue-end));
+    min-height: 380px;
+    padding-bottom: 70px;
+}
+
+@media (min-width: 768px) {
+    .product-card.large {
+        grid-column: span 2;
+        max-width: 500px;
+    }
+}
+@media (min-width: 1024px) {
+    .product-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .product-card.large {
+        grid-column: span 2;
+        max-width: 580px;
+    }
+}
+
+/* Labels (NUEVO, OFERTA) */
+.product-card .label {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.7em;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-light);
+    z-index: 10;
+}
+
+.product-card .label.new {
+    background-color: var(--tag-new);
+}
+
+.product-card .label.offer {
+    background-color: var(--tag-offer);
+    color: var(--text-dark);
+}
+
+/* Product Icon/Image Placeholder */
+.product-icon {
+    font-size: 3em;
+    text-align: center;
+    margin-bottom: 10px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    width: 80px;
+    margin: 0 auto 10px;
+}
+
+.product-card.large .product-icon {
+    font-size: 5em;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    width: auto;
+    height: auto;
+    margin: 0;
+}
+
+
+/* Product Info */
+.product-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product-card .category {
+    font-size: 0.75em;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 5px;
+}
+
+.product-card h3 {
+    font-size: 1.4em;
+    font-weight: 700;
+    margin-bottom: 8px;
+    line-height: 1.2;
+    color: var(--text-light);
+}
+
+.product-card p {
+    font-size: 0.8em;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 10px;
+    flex-grow: 1;
+}
+
+/* Rating */
+.rating {
+    font-size: 0.9em;
+    color: var(--star-color);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.rating span {
+    font-size: 0.8em;
+    color: rgba(255, 255, 255, 0.7);
+    margin-left: 3px;
+}
+
+/* Price */
+.price {
+    margin-top: auto;
+    font-size: 1.6em;
+    font-weight: 700;
+    color: var(--text-light);
+    margin-bottom: 12px;
+}
+
+.price del {
+    font-size: 0.65em;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: line-through;
+    margin-left: 8px;
+}
+
+/* Actions (Buttons) */
+.actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.product-card button {
+    background-color: var(--button-bg-light);
+    color: var(--text-light);
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 700;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.product-card button:hover:not(.disabled) {
+    background-color: var(--button-hover-light);
+    transform: translateY(-2px);
+}
+
+.product-card button.buy,
+.product-card button.cart {
+    background-color: var(--text-light);
+    color: var(--button-primary-text);
+    flex-basis: 65%;
+    padding: 12px 18px;
+}
+
+.product-card button.buy:hover,
+.product-card button.cart:hover {
+    background-color: #e0e0e0;
+}
+
+.product-card button.wishlist {
+    flex-basis: 35%;
+    font-size: 1.3em;
+    padding: 8px 12px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-card button.disabled {
+    background-color: var(--tag-sold-out);
+    color: var(--text-light);
+    cursor: not-allowed;
+    opacity: 0.8;
+    box-shadow: none;
+    padding: 10px 15px;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.product-card button.disabled:hover {
+    transform: none;
+    background-color: var(--tag-sold-out);
+}
+
+
+/* Discount Label */
+.discount {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: var(--tag-offer);
+    color: var(--text-dark);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    font-weight: 700;
+    z-index: 10;
+}
+
+/* Specific styles for .product-info.white */
+.product-info.white {
+    background-color: var(--card-bg-light);
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+    margin-top: auto;
+    color: var(--text-dark);
+}
+
+.product-info.white .category {
+    color: #666;
+}
+
+.product-info.white h3 {
+    color: var(--text-dark);
+    font-size: 1.3em;
+}
+
+.product-info.white p {
+    color: #555;
+    font-size: 0.75em;
+}
+
+.product-info.white .rating {
+    color: var(--star-color);
+}
+
+.product-info.white .rating span {
+    color: #777;
+}
+
+.product-info.white .price {
+    color: var(--text-dark);
+    font-size: 1.5em;
+}
+
+.product-info.white .price del {
+    color: #999;
+}
+
+.product-info.white button.cart,
+.product-info.white button.wishlist {
+    background-color: var(--primary-gradient-start);
+    color: var(--text-light);
+}
+
+.product-info.white button.cart:hover,
+.product-info.white button.wishlist:hover {
+    background-color: #6a3480;
+}
+
+.product-info.white button.disabled {
+    background-color: #ccc;
+    color: #777;
+}
+
+/* Footer Styles */
+.footer {
+    width: 100%;
+    background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end)); /* Mismo degradado que el header */
+    color: var(--text-light); /* Texto blanco */
+    text-align: center;
+    padding: 20px 0; /* Padding vertical */
+    margin-top: auto; /* Esto empuja el footer al final de la página */
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1); /* Sombra hacia arriba */
+}
+
+.footer p {
+    margin: 5px 0;
+    font-size: 0.9em;
+}
+
+.footer a {
+    color: var(--text-light); /* Enlace blanco */
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: #f0f0f0; /* Un poco más claro al pasar el ratón */
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 1024px) {
+    .product-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 0;
+    }
+
+    header {
+        padding: 15px 0;
+    }
+
+    header h1 {
+        font-size: 1.8em;
+    }
+
+    .title-section {
+        padding-left: 15px;
+    }
+    .title-section h2 {
+        font-size: 1.6em;
+    }
+
+    .product-grid {
+        grid-template-columns: 1fr;
+        max-width: 350px;
+        padding: 0 15px;
+    }
+
+    .product-card {
+        min-height: auto;
+        padding: 15px;
+    }
+
+    .product-card.large {
+        grid-column: span 1;
+        max-width: 100%;
+        min-height: auto;
+        padding-bottom: 15px;
+    }
+
+    .product-card .actions {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .product-card button.buy,
+    .product-card button.cart,
+    .product-card button.wishlist {
+        flex-basis: auto;
+        width: 100%;
+        padding: 10px 15px;
+    }
+
+    .product-card.large .product-icon {
+        position: static;
+        margin: 0 auto 10px;
+        font-size: 3.5em;
+    }
+
+    .product-card.large .buy {
+        position: static;
+        width: 100%;
+    }
+
+    .product-card .discount {
+        position: static;
+        margin-top: 8px;
+    }
+
+    .product-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 2.5em;
+    }
+
+    .product-info.white button.wishlist {
+        width: 100%;
+        height: auto;
+        font-size: 1.2em;
+    }
+
+    .footer {
+        padding: 15px 10px; /* Ajuste de padding para móviles */
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.6em;
+    }
+    .title-section h2 {
+        font-size: 1.4em;
+    }
+    .product-card {
+        padding: 15px;
+    }
+    .product-card h3 {
+        font-size: 1.2em;
+    }
+    .product-card .price strong {
+        font-size: 1.4em;
+    }
+    .footer p {
+        font-size: 0.8em;
+    }
+}
