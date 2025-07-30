@@ -1,0 +1,133 @@
+/* Fondo general con degradado verde a azul cielo */
+body {
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background:url('img/fondo_instituto.png') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* Header con degradado y sombra */
+header {
+    width: 100%;
+    background: linear-gradient(90deg, #11998e 0%, #38f9d7 100%);
+    color: #fff;
+    text-align: center;
+    padding: 32px 0 16px 0;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    margin-bottom: 30px;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+}
+
+.logo-header {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: #fff;
+    object-fit: contain;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.header-content h1, .header-content p {
+    margin: 0;
+    color: #fff;
+}
+
+
+header h1 {
+    margin: 0 0 8px 0;
+    font-size: 2.2em;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+header p {
+    margin: 0;
+    font-size: 1.1em;
+    font-weight: 400;
+}
+
+/* Contenedor principal del reloj */
+.contenedor {
+    background: rgba(255,255,255,0.95);
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(67, 233, 123, 0.12);
+    padding: 40px 32px 32px 32px;
+    margin: 40px 0 40px 0;
+    text-align: center;
+    min-width: 320px;
+    max-width: 400px;
+}
+
+.contenedor h1 {
+    color: #11998e;
+    margin-bottom: 18px;
+    font-size: 1.7em;
+    font-weight: 600;
+}
+
+.reloj {
+    font-size: 3em;
+    font-family: 'Consolas', 'Courier New', monospace;
+    color: #11998e;
+    background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%);
+    border-radius: 10px;
+    padding: 18px 0;
+    margin: 0 auto 10px auto;
+    width: 90%;
+    box-shadow: 0 2px 8px rgba(67, 233, 123, 0.10);
+    letter-spacing: 2px;
+}
+
+/* Footer con degradado inverso */
+footer {
+    width: 100%;
+    background: linear-gradient(90deg, #38f9d7 0%, #11998e 100%);
+    color: #fff;
+    text-align: center;
+    padding: 28px 0 18px 0;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    font-size: 1em;
+    box-shadow: 0 -2px 12px rgba(0,0,0,0.07);
+}
+
+footer a {
+    color: #fff;
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+footer a:hover {
+    color: #43e97b;
+}
+
+/* Responsive para móviles */
+@media (max-width: 600px) {
+    .contenedor {
+        min-width: 90vw;
+        max-width: 98vw;
+        padding: 24px 4vw 24px 4vw;
+    }
+    .reloj {
+        font-size: 2em;
+        padding: 12px 0;
+    }
+    header {
+        padding: 24px 0 10px 0;
+    }
+    footer {
+        font-size: 0.95em;
+        padding: 18px 0 10px 0;
+    }
+}
